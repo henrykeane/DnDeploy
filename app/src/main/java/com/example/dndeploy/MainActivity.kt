@@ -67,7 +67,7 @@ fun run(ownerID:String): MutableList<String>{
         if(!response.isSuccessful) throw IOException("Unexpected code $response")
         val sqlArray = characterRowJSONAdapter.fromJson(response.body!!.source())
         val size = sqlArray!!.size
-        val characters = MutableList(size) {String()}
+        val characters = ArrayList<String>()//MutableList() {String()}
         for(row in 0 until size){
             //if owner id = ownerid add to characters TODO
             if((sqlArray.get(row).owner_ID).toString() == ownerID){

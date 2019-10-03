@@ -1,6 +1,5 @@
 package com.example.dndeploy
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,21 +7,57 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.character_pool_detail.view.*
 
-class CharacterPoolAdapter(private val ownerID: String, private val characters: Array<String>)
-//class CharacterPoolAdapter(private val ownerID: String, private val characterJSON: String)
+//class CharacterPoolAdapter(private val ownerID: String, private val characters: Array<String>)
+class CharacterPoolAdapter(ownerID: String, previewJSON: String)
     :RecyclerView.Adapter<CharacterPoolAdapter.CharacterViewHolder>(){
 
     private val moshi = Moshi.Builder().build()
     private val characterPreviewJSONAdapter = moshi.adapter(Array<CharacterPreview>::class.java)
+    private val characters = ArrayList<CharacterPreview>()
 
 
-    class CharacterPreview{
-
+    init{
+        println("Preview JSON: $previewJSON")
+        val previewArray = characterPreviewJSONAdapter.fromJson(previewJSON)
+        println("Preview Array: $previewArray")
+        for(preview in previewArray!!){
+            println("Adding $preview")
+            characters.add(preview)
+        }
+        println("Characters: $characters")
+        /*
+            val request = Request.Builder()
+//        .url("http://192.168.0.6:3000/conTest")
+        .url("http://10.0.2.2:3000/conTest")
+//        .post(requestBody)
+        .build()
+    client.newCall(request).execute().use { response ->
+        if(!response.isSuccessful) throw IOException("Unexpected code $response")
+        val sqlArray = characterRowJSONAdapter.fromJson(response.body!!.source())
+        val size = sqlArray!!.size
+        val characters = MutableList(size) {String()}
+        for(row in 0 until size){
+            //if owner id = ownerid add to characters TODO
+            if((sqlArray.get(row).owner_ID).toString() == ownerID){
+                val character = (sqlArray.get(row).character_JSON).toString();
+                characters.add(character)
+            }else   print("WHATS GOING ON")
+        }
+        return characters
     }
+         */
+    }
+
+    //TODO: Add the rest of the parameters. We're doing this bitch manually
+    data class CharacterPreview(val name:String?=null)//,
+//                                @Json(name="character_JSON") val characterJSON: String)
+
+
 
     class CharacterViewHolder(v: View):RecyclerView.ViewHolder(v){//}, View.OnClickListener{
 
         private var view = v
+
 //        private var character: String? = null
 //
 //        init{
@@ -39,7 +74,7 @@ class CharacterPoolAdapter(private val ownerID: String, private val characters: 
     override fun getItemCount() = characters.size
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        holder.itemView.characterTextView?.text = characters.get(position)
+        holder.itemView.characterTextView?.text = characters[position].name//characterName// characters.get(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {

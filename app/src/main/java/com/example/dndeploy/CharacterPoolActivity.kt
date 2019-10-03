@@ -23,14 +23,15 @@ class CharacterPoolActivity : AppCompatActivity() {
         val idTextView = findViewById<TextView>(R.id.owneridTextView)
         val ownerID = intent?.extras?.get("com.example.dndeploy.ID").toString()
         val characters = intent?.extras?.get("com.example.dndeploy.RESPONSE").toString()
-        val fakeArray = arrayOf(characters)
+//        val fakeArray = arrayOf(characters)
         val idText = "ID: $ownerID"
         idTextView.text = idText
 
         val recyclerView = findViewById<RecyclerView>(R.id.characterPoolRecyclerView)
         recyclerView.apply{
             layoutManager = LinearLayoutManager(context)
-            adapter = CharacterPoolAdapter(ownerID,fakeArray)
+//            adapter = CharacterPoolAdapter(ownerID,fakeArray)
+            adapter = CharacterPoolAdapter(ownerID,characters)
         }
 
 
