@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.StrictMode
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
@@ -30,9 +31,12 @@ class MainActivity : AppCompatActivity() {
         val ownerIDBtn = findViewById<Button>(R.id.owner_idButton)
         ownerIDBtn.setOnClickListener{
             val ownerIDIntent = Intent(this, CharacterPoolActivity::class.java)
-            val ownerIDtext = findViewById<EditText>(R.id.owner_idEditText)
-            val ownerID = ownerIDtext.text.toString().toInt()
+            val ownerIDEditText = findViewById<EditText>(R.id.owner_idEditText)
+            val ownerID = ownerIDEditText.text.toString().toInt()
+//            val infoTextView = findViewById<TextView>(R.id.infoTextView)
 
+            //infoTextView.text = ("DATABASE DATABASE")
+            //infoTextView.text = ("Insert Owner ID")
 //            run(ownerID.toString(),this)
             doAsync{
                 val dbResponse = ArrayList(run(ownerID.toString()));
@@ -45,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 }
 private val client = OkHttpClient()
 private val moshi = Moshi.Builder().build()
-private val characterRowJSONAdapter = moshi.adapter(Array<characterRow>::class.java)
+private val characterRowJSONAdapter = moshi.adapter(Array<CharacterRow>::class.java)
 
 //Bad function, for now just manual check the ownerID
 fun run(ownerID:String): MutableList<String>{
@@ -67,32 +71,14 @@ fun run(ownerID:String): MutableList<String>{
         for(row in 0 until size){
             //if owner id = ownerid add to characters TODO
             if((sqlArray.get(row).owner_ID).toString() == ownerID){
-                characters.add((sqlArray.get(row).character_JSON).toString())
-                print(sqlArray.get(row).character_JSON).toString()
+                val character = (sqlArray.get(row).character_JSON).toString();
+                characters.add(character)
             }else   print("WHATS GOING ON")
         }
-
-
-//        val ownerIDtext = findViewById<EditText>(R.id.owner_idEditText)
-//        val ownerID = ownerIDtext.text.toString().toInt()
-
-//        run(ownerID.toString(),this)
-//            val dbResponse = ArrayList(run(ownerID.toString(),ownerIDIntent));
-//            ownerIDIntent.putExtra("com.example.dndeploy.ID", ownerID)
-//            ownerIDIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
-//            startActivity(ownerIDIntent)
-
-
-//        val ownerIDIntent = Intent(context, CharacterPoolActivity::class.java)
-//
-//        val characterArray = ArrayList(characters)
-//        ownerIDIntent.putExtra("com.example.dndeploy.ID", ownerID)
-//        ownerIDIntent.putExtra("com.example.dndeploy.RESPONSE", characterArray)
-//        startActivity(context, ownerIDIntent, null)
         return characters
     }
 }
-class characterRow {
+class CharacterRow {
     var owner_ID: String? = null
     var character_JSON: String? = null
 }

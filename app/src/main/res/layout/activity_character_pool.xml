@@ -40,7 +40,7 @@
         tools:layout_editor_absoluteX="-22dp" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/characterPool"
+        android:id="@+id/characterPoolRecyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

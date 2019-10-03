@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class CharacterPoolActivity : AppCompatActivity() {
 
@@ -19,7 +21,28 @@ class CharacterPoolActivity : AppCompatActivity() {
         //intent passing
 
         val idTextView = findViewById<TextView>(R.id.owneridTextView)
-        val id = "ID: " + intent?.extras?.get("com.example.dndeploy.ID").toString()
-        idTextView.text = id
+        val ownerID = intent?.extras?.get("com.example.dndeploy.ID").toString()
+        val characters = intent?.extras?.get("com.example.dndeploy.RESPONSE").toString()
+        val fakeArray = arrayOf(characters)
+        val idText = "ID: $ownerID"
+        idTextView.text = idText
+
+        val recyclerView = findViewById<RecyclerView>(R.id.characterPoolRecyclerView)
+        recyclerView.apply{
+            layoutManager = LinearLayoutManager(context)
+            adapter = CharacterPoolAdapter(ownerID,fakeArray)
+        }
+
+
+        /*
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView);
+        recyclerView.apply{
+//                this.clearOnChildAttachStateChangeListeners()
+            layoutManager = LinearLayoutManager(context);
+            adapter = SecondAdapter(names.toTypedArray(), danks.toTypedArray(), descs.toTypedArray())
+
+//                this.change
+        }
+         */
     }
 }
