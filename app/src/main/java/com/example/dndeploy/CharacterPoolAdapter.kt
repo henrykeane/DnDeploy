@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.character_pool_detail.view.*
 
@@ -23,6 +24,7 @@ class CharacterPoolAdapter(ownerID: String, previewJSON: String)
         for(preview in previewArray!!){
             println("Adding $preview")
             characters.add(preview)
+            println("Stat: ${preview.name} and this ${preview.stats?.str}")
         }
         println("Characters: $characters")
         /*
@@ -48,9 +50,25 @@ class CharacterPoolAdapter(ownerID: String, previewJSON: String)
          */
     }
 
-    //TODO: Add the rest of the parameters. We're doing this bitch manually
-    data class CharacterPreview(val name:String?=null)//,
-//                                @Json(name="character_JSON") val characterJSON: String)
+    class CharacterPreview(val name:String?=null,
+                                val hp:String?=null,
+                                val stats:CharacterStats?=null,
+                                val race:String?=null,
+                                val level:String?=null,
+                                @Json(name="class")val characterClass:String?=null,
+                                val spellbook:List<String>,
+                                val feats:List<String>,
+                                val items:List<String>,
+                                val lore:List<String>,
+                                val prof:List<String>){
+        data class CharacterStats(val str:String?=null,
+                                  val dex:String?=null,
+                                  val con:String?=null,
+                                  val int:String?=null,
+                                  val wis:String?=null,
+                                  val cha:String?=null)
+    }
+
 
 
 
