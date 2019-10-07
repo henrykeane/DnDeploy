@@ -7,17 +7,17 @@
     tools:context=".ViewCharacterActivity">
 
     <TextView
-        android:id="@+id/nameTextView14"
+        android:id="@+id/loreTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="loreTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView4" />
+        app:layout_constraintTop_toBottomOf="@+id/profTextView" />
 
     <TextView
-        android:id="@+id/nameTextView8"
+        android:id="@+id/itemsTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -54,7 +54,7 @@
         android:text="raceTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statsTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <TextView
         android:id="@+id/spellbookTextView"
@@ -67,24 +67,14 @@
         app:layout_constraintTop_toBottomOf="@+id/classTextView" />
 
     <TextView
-        android:id="@+id/statsTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="statsTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hpTextView" />
-
-    <TextView
-        android:id="@+id/nameTextView4"
+        android:id="@+id/profTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="profTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView8" />
+        app:layout_constraintTop_toBottomOf="@+id/itemsTextView" />
 
     <TextView
         android:id="@+id/hpTextView"
@@ -115,4 +105,63 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hpTextView">
+
+        <TextView
+            android:id="@+id/strTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="str" />
+
+        <TextView
+            android:id="@+id/dexTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="dex" />
+
+        <TextView
+            android:id="@+id/conTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="con" />
+
+        <TextView
+            android:id="@+id/intTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="int" />
+
+        <TextView
+            android:id="@+id/wisTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="wis" />
+
+        <TextView
+            android:id="@+id/chaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="cha" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
