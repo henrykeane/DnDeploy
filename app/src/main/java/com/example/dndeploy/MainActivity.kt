@@ -1,18 +1,13 @@
 package com.example.dndeploy
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.StrictMode
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.jetbrains.anko.custom.async
 import org.jetbrains.anko.doAsync
 import java.io.IOException
 
@@ -22,22 +17,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val sdkInt = android.os.Build.VERSION.SDK_INT;
-//        if(sdkInt > 8){
-//            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-//            StrictMode.setThreadPolicy(policy)
-//        }
-
         val ownerIDBtn = findViewById<Button>(R.id.owner_idButton)
         ownerIDBtn.setOnClickListener{
             val ownerIDIntent = Intent(this, CharacterPoolActivity::class.java)
             val ownerIDEditText = findViewById<EditText>(R.id.owner_idEditText)
             val ownerID = ownerIDEditText.text.toString().toInt()
-//            val infoTextView = findViewById<TextView>(R.id.infoTextView)
-
-            //infoTextView.text = ("DATABASE DATABASE")
-            //infoTextView.text = ("Insert Owner ID")
-//            run(ownerID.toString(),this)
             doAsync{
                 val dbResponse = ArrayList(run(ownerID.toString()));
                 ownerIDIntent.putExtra("com.example.dndeploy.ID", ownerID)

@@ -1,15 +1,15 @@
 package com.example.dndeploy
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.moshi.Json
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.character_pool_detail.view.*
-import java.io.Serializable
 
-class CharacterPoolAdapter(ownerID: String, characterPoolJSON: String)
+class CharacterPoolAdapter(ownerID: String, characterPoolJSON: String, private val mCon: Context)
     :RecyclerView.Adapter<CharacterPoolAdapter.CharacterViewHolder>(){
 
     private val moshi = Moshi.Builder().build()
@@ -37,9 +37,13 @@ class CharacterPoolAdapter(ownerID: String, characterPoolJSON: String)
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val characterSelector = holder.itemView.characterTextView
-        characterSelector?.text = characters[position].name//characterName// characters.get(position)
+        val character = characters[position]
+
+        characterSelector?.text = character.name
         characterSelector.setOnClickListener{
-            characterSelector?.text = "Clicked!"
+            val characterIntent = Intent(mCon, ViewCharacterActivity::class.java)
+            characterIntent.putExtra("com.example.dndeploy.CHARACTER",character)
+            mCon.startActivity(characterIntent)
         }
     }
 

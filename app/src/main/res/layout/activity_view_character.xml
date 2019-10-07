@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#605F5E"
     tools:context=".ViewCharacterActivity">
 
     <TextView
@@ -11,7 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="loreTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profTextView" />
@@ -21,17 +24,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="itemsTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/featsTextView" />
 
     <TextView
-        android:id="@+id/classTextView"
+        android:id="@+id/characterClassTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="classTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/levelTextView" />
@@ -41,7 +48,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="levelTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/raceTextView" />
@@ -51,27 +60,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="raceTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/statLinearLayout" />
 
     <TextView
         android:id="@+id/spellbookTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="spellbookTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/classTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/characterClassTextView" />
 
     <TextView
         android:id="@+id/profTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="profTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemsTextView" />
@@ -81,7 +96,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="hpTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
@@ -91,7 +108,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="featsTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spellbookTextView" />
@@ -101,20 +120,88 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
         android:text="nameTextView"
+        android:textColor="#273043"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/titleLinearLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#f94027"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/hpTextView">
+
+        <TextView
+            android:id="@+id/titleStrTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="str"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleDexTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="dex"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleConTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="con"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleIntTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="int"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleWisTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="wis"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleChaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="cha"
+            android:textColor="#273043" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/statLinearLayout"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="#faa916"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout">
 
         <TextView
             android:id="@+id/strTextView"
@@ -122,7 +209,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="str" />
+            android:text="str"
+            android:textColor="#273043" />
 
         <TextView
             android:id="@+id/dexTextView"
@@ -130,7 +218,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="dex" />
+            android:text="dex"
+            android:textColor="#273043" />
 
         <TextView
             android:id="@+id/conTextView"
@@ -138,7 +227,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="con" />
+            android:text="con"
+            android:textColor="#273043" />
 
         <TextView
             android:id="@+id/intTextView"
@@ -146,7 +236,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="int" />
+            android:text="int"
+            android:textColor="#273043" />
 
         <TextView
             android:id="@+id/wisTextView"
@@ -154,7 +245,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="wis" />
+            android:text="wis"
+            android:textColor="#273043" />
 
         <TextView
             android:id="@+id/chaTextView"
@@ -162,6 +254,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="cha" />
+            android:text="cha"
+            android:textColor="#273043" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
