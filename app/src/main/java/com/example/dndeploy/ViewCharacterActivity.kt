@@ -13,26 +13,57 @@ class ViewCharacterActivity : AppCompatActivity() {
         //Just retrieve everything and put it into the stuff
 
         val character = intent?.extras?.get("com.example.dndeploy.CHARACTER") as Character
+
         val nameTextView = findViewById<TextView>(R.id.nameTextView)
-        nameTextView.text = character.name
+        val name = "${character.name}"
+        nameTextView.text = name
+
         val hpTextView = findViewById<TextView>(R.id.hpTextView)
-        hpTextView.text = character.hp
-        val levelTextView = findViewById<TextView>(R.id.levelTextView)
-        levelTextView.text = character.level
+        val hp = "HP: ${character.hp}"
+        hpTextView.text = hp
+
+        val classLevelTextView = findViewById<TextView>(R.id.classLevelTextView)
+        val classLevel = "Level ${character.level} ${character.characterClass}"
+        classLevelTextView.text = classLevel
+
         val raceTextView = findViewById<TextView>(R.id.raceTextView)
         raceTextView.text = character.race
-        val characterClassTextView = findViewById<TextView>(R.id.characterClassTextView)
-        characterClassTextView.text = character.characterClass
-//        val featsTextView = findViewById<TextView>(R.id.featsTextView)
-//        featsTextView.text = character.feats
-//        val itemsTextView = findViewById<TextView>(R.id.itemsTextView)
-//        itemsTextView.text = character.items
-//        val loreTextView = findViewById<TextView>(R.id.loreTextView)
-//        loreTextView.text = character.lore
-//        val profTextView = findViewById<TextView>(R.id.profTextView)
-//        profTextView.text = character.prof
-//        val spellbookTextView = findViewById<TextView>(R.id.spellbookTextView)
-//        spellbookTextView.text = character.spellbook
+
+        val featsTextView = findViewById<TextView>(R.id.featsTextView)
+        var feats = ""
+        for(feat in character.feats){
+            feats += feat
+        }
+        featsTextView.text = feats
+
+        val itemsTextView = findViewById<TextView>(R.id.itemsTextView)
+        var items = ""
+        for(item in character.items){
+            items += item
+        }
+        itemsTextView.text = items
+
+        val loreTextView = findViewById<TextView>(R.id.loreTextView)
+        var lore = ""
+        for(lorepiece in character.lore){
+            lore += lorepiece
+        }
+        loreTextView.text = lore
+
+        val profTextView = findViewById<TextView>(R.id.profTextView)
+        var prof = ""
+        for(individualProf in character.prof){
+            prof += individualProf + " "
+        }
+        profTextView.text = prof
+
+        val spellbookTextView = findViewById<TextView>(R.id.spellbookTextView)
+        var spellbook = ""
+        for(spell in character.spellbook){
+            spellbook += spell
+        }
+        spellbookTextView.text = spellbook
+
         val strTextView = findViewById<TextView>(R.id.strTextView)
         strTextView.text = character.stats?.str
         val dexTextView = findViewById<TextView>(R.id.dexTextView)

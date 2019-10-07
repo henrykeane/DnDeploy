@@ -43,8 +43,8 @@ fun run(ownerID:String): MutableList<String>{
 //        .addFormDataPart("ownerID",ownerID)
 //        .build()
     val request = Request.Builder()
-//        .url("http://192.168.0.6:3000/conTest")
-        .url("http://10.0.2.2:3000/conTest")
+//        .url("http://192.168.0.6:3000/retrieveCharacters")
+        .url("http://10.0.2.2:3000/retrieveCharacters")
 //        .post(requestBody)
         .build()
     client.newCall(request).execute().use { response ->
