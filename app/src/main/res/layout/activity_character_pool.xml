@@ -15,12 +15,12 @@
         android:layout_marginTop="16dp"
         android:text="ID: X"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/generateCharacterButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/generateCharacterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -36,7 +36,7 @@
         android:layout_height="1dp"
         android:layout_marginTop="8dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/generateCharacterButton"
         tools:layout_editor_absoluteX="-22dp" />
 
     <androidx.recyclerview.widget.RecyclerView

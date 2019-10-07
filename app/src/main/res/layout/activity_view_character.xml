@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#605F5E"
+    tools:context=".ViewCharacterActivity">
+
+    <TextView
+        android:id="@+id/loreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="loreTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profTextView" />
+
+    <TextView
+        android:id="@+id/itemsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="itemsTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/featsTextView" />
+
+    <TextView
+        android:id="@+id/classLevelTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="classLevelTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/raceTextView" />
+
+    <TextView
+        android:id="@+id/raceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="raceTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statLinearLayout" />
+
+    <TextView
+        android:id="@+id/spellbookTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="spellbookTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classLevelTextView" />
+
+    <TextView
+        android:id="@+id/profTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="profTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemsTextView" />
+
+    <TextView
+        android:id="@+id/hpTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="hpTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+    <TextView
+        android:id="@+id/featsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="featsTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spellbookTextView" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
+        android:text="nameTextView"
+        android:textColor="#273043"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/titleLinearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#f94027"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="8px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hpTextView">
+
+        <TextView
+            android:id="@+id/titleStrTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="str"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleDexTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="dex"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleConTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="con"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleIntTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="int"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleWisTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="wis"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/titleChaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="cha"
+            android:textColor="#273043" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/statLinearLayout"
+        android:layout_width="411dp"
+        android:layout_height="wrap_content"
+        android:background="#faa916"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="8px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleLinearLayout">
+
+        <TextView
+            android:id="@+id/strTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="str"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/dexTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="dex"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/conTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="con"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/intTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="int"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/wisTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:text="wis"
+            android:textColor="#273043" />
+
+        <TextView
+            android:id="@+id/chaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="cha"
+            android:textColor="#273043" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
