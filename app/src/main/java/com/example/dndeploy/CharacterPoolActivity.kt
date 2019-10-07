@@ -1,11 +1,21 @@
 package com.example.dndeploy
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.moshi.Moshi
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import org.jetbrains.anko.doAsync
+import org.json.JSONObject
+import java.io.IOException
 
 class CharacterPoolActivity : AppCompatActivity() {
 
@@ -31,5 +41,37 @@ class CharacterPoolActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context)
             adapter = CharacterPoolAdapter(ownerID,characters, context)
         }
+
+        val generateCharacterButton = findViewById<Button>(R.id.generateCharacterButton)
+        generateCharacterButton.setOnClickListener{
+
+            val refreshIntent = Intent(this, CharacterPoolActivity::class.java)
+            doAsync{
+                newCharacter(ownerID)
+                refreshIntent.putExtra("com.example.dndeploy.ID", ownerID)
+                //uses retrieveCharacters fun from MainActivity.kt
+                val dbResponse = ArrayList(retrieveCharacters(ownerID));
+                refreshIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
+                finish()
+                startActivity(refreshIntent)
+            }
+        }
     }
+}
+private val client = OkHttpClient()
+private val moshi = Moshi.Builder().build()
+private val characterRowJSONAdapter = moshi.adapter(Array<CharacterRow>::class.java)
+
+//Bad function, for now just manual check the ownerID
+fun newCharacter(ownerID:String){
+
+    val ownerJSON = JSONObject("""{"ownerID":$ownerID}""")
+    val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
+    val body = (ownerJSON.toString()).toRequestBody(JSON)
+    val request = Request.Builder()
+//        .url("http://192.168.0.6:3000/retrieveCharacters")
+        .url("http://10.0.2.2:3000/createCharacter")
+        .post(body)
+        .build()
+    client.newCall(request).execute()
 }
