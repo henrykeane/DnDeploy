@@ -46,8 +46,8 @@ fun retrieveCharacters(ownerID:String): MutableList<String>{
     val json = "application/json; charset=utf-8".toMediaTypeOrNull()
     val body = (ownerJSON.toString()).toRequestBody(json)
     val request = Request.Builder()
-//        .url("http://192.168.0.6:3000/retrieveCharacters")
-        .url("http://10.0.2.2:3000/retrieveCharacters")
+        .url("https://ce40826e.ngrok.io/retrieveCharacters")
+//        .url("http://10.0.2.2:3000/retrieveCharacters")
         .post(body)
         .build()
     client.newCall(request).execute().use { response ->
