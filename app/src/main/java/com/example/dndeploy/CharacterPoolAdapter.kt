@@ -9,37 +9,38 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.moshi.Moshi
 import kotlinx.android.synthetic.main.character_pool_detail.view.*
 
-class CharacterPoolAdapter(ownerID: String, characterPoolJSON: String, private val mCon: Context)
+class CharacterPoolAdapter(private val characters: Array<CharacterData>?, private val mCon: Context)
     :RecyclerView.Adapter<CharacterPoolAdapter.CharacterViewHolder>(){
 
-    private val moshi = Moshi.Builder().build()
-    private val characterPreviewJSONAdapter = moshi.adapter(Array<Character>::class.java)
-    private val characters = ArrayList<Character>()
+//    private val moshi = Moshi.Builder().build()
+//    private val characterPreviewJSONAdapter = moshi.adapter(Array<Character>::class.java)
+//    private val characters = ArrayList<Character>()
 
 
     init{
-        println("Preview JSON: $characterPoolJSON")
-        val characterArray = characterPreviewJSONAdapter.fromJson(characterPoolJSON)
-        println("Preview Array: $characterArray")
-        for(character in characterArray!!){
-            println("Adding $character")
-            characters.add(character)
-            println("Stat: ${character.name} and this ${character.stats?.str}")
-        }
-        println("Characters: $characters")
+//        println("Preview JSON: $characterRow")
+//        val characterArray = characterPreviewJSONAdapter.fromJson(characterRow)
+//        println("Preview Array: $characterArray")
+//        for(character in characterArray!!){
+//            println("Adding $character")
+//            characters.add(character)
+//            println("Stat: ${character.name} and this ${character.stats?.str}")
+//        }
+//        println("Characters: $characters")
     }
 
-    class CharacterViewHolder(v: View):RecyclerView.ViewHolder(v){//}, View.OnClickListener{
+    class CharacterViewHolder(v: View):RecyclerView.ViewHolder(v){
         private var view = v
     }
 
-    override fun getItemCount() = characters.size
+    override fun getItemCount() = characters!!.size
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
         val characterSelector = holder.itemView.characterTextView
-        val character = characters[position]
+        val character = characters!![position]
 
-        characterSelector?.text = character.name
+//        characterSelector?.text = character.name
+        characterSelector?.text = character.characterContents?.name
         characterSelector.setOnClickListener{
             val characterIntent = Intent(mCon, ViewCharacterActivity::class.java)
             characterIntent.putExtra("com.example.dndeploy.CHARACTER",character)
@@ -48,6 +49,7 @@ class CharacterPoolAdapter(ownerID: String, characterPoolJSON: String, private v
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        return CharacterViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.character_pool_detail, parent, false))
+        return CharacterViewHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.character_pool_detail, parent, false))
     }
 }

@@ -32,14 +32,16 @@ class CharacterPoolActivity : AppCompatActivity() {
 
         val idTextView = findViewById<TextView>(R.id.owneridTextView)
         val ownerID = intent?.extras?.get("com.example.dndeploy.ID").toString()
-        val characters = intent?.extras?.get("com.example.dndeploy.RESPONSE").toString()
+        @SuppressWarnings("unchecked")
+        val characters =  intent?.extras?.get("com.example.dndeploy.RESPONSE")
+                as (MutableList<CharacterData>)
         val idText = "ID: $ownerID"
         idTextView.text = idText
 
         val recyclerView = findViewById<RecyclerView>(R.id.characterPoolRecyclerView)
         recyclerView.apply{
             layoutManager = LinearLayoutManager(context)
-            adapter = CharacterPoolAdapter(ownerID,characters, context)
+            adapter = CharacterPoolAdapter(characters.toTypedArray(), context)
         }
 
         val generateCharacterButton = findViewById<Button>(R.id.generateCharacterButton)
@@ -50,28 +52,11 @@ class CharacterPoolActivity : AppCompatActivity() {
                 newCharacter(ownerID)
                 refreshIntent.putExtra("com.example.dndeploy.ID", ownerID)
                 //uses retrieveCharacters fun from MainActivity.kt
-                val dbResponse = ArrayList(retrieveCharacters(ownerID));
+                val dbResponse = retrieveCharacters(ownerID);
                 refreshIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
                 finish()
                 startActivity(refreshIntent)
             }
         }
     }
-}
-private val client = OkHttpClient()
-private val moshi = Moshi.Builder().build()
-private val characterRowJSONAdapter = moshi.adapter(Array<CharacterRow>::class.java)
-
-//Bad function, for now just manual check the ownerID
-fun newCharacter(ownerID:String){
-
-    val ownerJSON = JSONObject("""{"ownerID":$ownerID}""")
-    val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
-    val body = (ownerJSON.toString()).toRequestBody(JSON)
-    val request = Request.Builder()
-        .url("https://ce40826e.ngrok.io/createCharacter")
-//        .url("http://10.0.2.2:3000/createCharacter")
-        .post(body)
-        .build()
-    client.newCall(request).execute()
 }
