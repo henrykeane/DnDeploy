@@ -41,7 +41,7 @@ fun newCharacter(ownerID:String, context: Context){
         .post(body)
         .build()
     client.newCall(request).execute().use{response ->
-        if(!response.isSuccessful) {serverConnectionErrorAlert(response, context)}
+        if(!response.isSuccessful) {throw IOException("Unexpected code $response")}
     }
 }
 
@@ -57,7 +57,7 @@ fun retrieveCharacters(ownerID:String, context: Context): ArrayList<CharacterDat
         .post(body)
         .build()
     client.newCall(request).execute().use { response ->
-        if(!response.isSuccessful) {serverConnectionErrorAlert(response, context)}
+        if(!response.isSuccessful) {throw IOException("Unexpected code $response")}
         val characterRows = characterRowAdapter.fromJson(response.body!!.source())
         val characterRoster = ArrayList<CharacterData>()
 
@@ -70,16 +70,6 @@ fun retrieveCharacters(ownerID:String, context: Context): ArrayList<CharacterDat
         }
         return characterRoster
     }
-}
-private fun serverConnectionErrorAlert(response: Response, context: Context){
-    val alertDialog = AlertDialog.Builder(context).create()
-    alertDialog.setTitle("Error")
-    alertDialog.setMessage("Error connecting to server")
-    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Sad!"
-    ) { dialog, _ -> dialog.dismiss() }
-    alertDialog.show()
-    println("Failed to connect")
-    throw IOException("Unexpected code $response")
 }
 
 data class CharacterData(

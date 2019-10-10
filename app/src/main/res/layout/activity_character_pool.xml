@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#605F5E"
     tools:context=".CharacterPoolActivity">
 
     <TextView
@@ -13,6 +14,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:background="#fbfffe"
+        android:padding="8px"
         android:text="ID: X"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/generateCharacterButton"

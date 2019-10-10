@@ -24,16 +24,13 @@ class CharacterPoolActivity : AppCompatActivity() {
         setContentView(R.layout.activity_character_pool)
         val context = this
 
-
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
 
-
         //intent passing
-
         val idTextView = findViewById<TextView>(R.id.owneridTextView)
         val ownerID = intent?.extras?.get("com.example.dndeploy.ID").toString()
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings("Unchecked cast")
         val characters =  intent?.extras?.get("com.example.dndeploy.RESPONSE")
                 as (MutableList<CharacterData>)
         val idText = "ID: $ownerID"
@@ -52,7 +49,6 @@ class CharacterPoolActivity : AppCompatActivity() {
             doAsync{
                 newCharacter(ownerID, context)
                 refreshIntent.putExtra("com.example.dndeploy.ID", ownerID)
-                //uses retrieveCharacters fun from MainActivity.kt
                 val dbResponse = retrieveCharacters(ownerID, context);
                 refreshIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
                 finish()
