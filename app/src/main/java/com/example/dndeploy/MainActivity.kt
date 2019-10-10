@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val context = this
 
         val ownerIDBtn = findViewById<Button>(R.id.owner_idButton)
         ownerIDBtn.setOnClickListener{
@@ -27,45 +28,11 @@ class MainActivity : AppCompatActivity() {
                 val ownerIDIntent = Intent(this, CharacterPoolActivity::class.java)
                 doAsync{
                     ownerIDIntent.putExtra("com.example.dndeploy.ID", ownerID)
-                    val dbResponse = ArrayList(retrieveCharacters(ownerID));
+                    val dbResponse = retrieveCharacters(ownerID, context);
                     ownerIDIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
                     startActivity(ownerIDIntent)
                 }
             }
         }
     }
-}
-private val client = OkHttpClient()
-private val moshi = Moshi.Builder().build()
-private val characterRowJSONAdapter = moshi.adapter(Array<CharacterRow>::class.java)
-
-fun retrieveCharacters(ownerID:String): MutableList<String>{
-//    print("Run")
-
-    val ownerJSON = JSONObject("""{"ownerID":$ownerID}""")
-    val json = "application/json; charset=utf-8".toMediaTypeOrNull()
-    val body = (ownerJSON.toString()).toRequestBody(json)
-    val request = Request.Builder()
-//        .url("http://192.168.0.6:3000/retrieveCharacters")
-        .url("http://10.0.2.2:3000/retrieveCharacters")
-        .post(body)
-        .build()
-    client.newCall(request).execute().use { response ->
-        if(!response.isSuccessful) throw IOException("Unexpected code $response")
-        val sqlArray = characterRowJSONAdapter.fromJson(response.body!!.source())
-        val size = sqlArray!!.size
-        val characters = ArrayList<String>()//MutableList() {String()}
-        for(row in 0 until size){
-            //if owner id = ownerid add to characters TODO
-            if((sqlArray.get(row).owner_ID).toString() == ownerID){
-                val character = (sqlArray.get(row).character_JSON).toString();
-                characters.add(character)
-            }else   print("WHATS GOING ON")
-        }
-        return characters
-    }
-}
-class CharacterRow {
-    var owner_ID: String? = null
-    var character_JSON: String? = null
 }
