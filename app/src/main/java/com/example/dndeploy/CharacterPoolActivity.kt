@@ -22,6 +22,7 @@ class CharacterPoolActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character_pool)
+        val context = this
 
 
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
@@ -49,10 +50,10 @@ class CharacterPoolActivity : AppCompatActivity() {
 
             val refreshIntent = Intent(this, CharacterPoolActivity::class.java)
             doAsync{
-                newCharacter(ownerID)
+                newCharacter(ownerID, context)
                 refreshIntent.putExtra("com.example.dndeploy.ID", ownerID)
                 //uses retrieveCharacters fun from MainActivity.kt
-                val dbResponse = retrieveCharacters(ownerID);
+                val dbResponse = retrieveCharacters(ownerID, context);
                 refreshIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
                 finish()
                 startActivity(refreshIntent)
