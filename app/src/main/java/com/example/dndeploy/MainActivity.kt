@@ -18,7 +18,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val context = this
 
         val ownerIDBtn = findViewById<Button>(R.id.owner_idButton)
         ownerIDBtn.setOnClickListener{
@@ -28,7 +27,7 @@ class MainActivity : AppCompatActivity() {
                 val ownerIDIntent = Intent(this, CharacterPoolActivity::class.java)
                 doAsync{
                     ownerIDIntent.putExtra("com.example.dndeploy.ID", ownerID)
-                    val dbResponse = retrieveCharacters(ownerID, context);
+                    val dbResponse = retrieveCharacters(ownerID);
                     ownerIDIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
                     startActivity(ownerIDIntent)
                 }

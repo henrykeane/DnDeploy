@@ -30,9 +30,9 @@ val characterRowAdapter: JsonAdapter<Array<CharacterRow>> =
     moshi.adapter(Array<CharacterRow>::class.java)
 
 //Create a character and add it to the owner's roster in the database
-fun newCharacter(ownerID:String, context: Context){
+fun newCharacter(ownerID:String){
     val apiURL = "$url/createCharacter"
-    val ownerJSON = JSONObject("""{"ownerID":$ownerID}""")
+    val ownerJSON = JSONObject("""{"owner_ID":$ownerID}""")
     val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
     val body = (ownerJSON.toString()).toRequestBody(JSON)
     val request = Request.Builder()
@@ -46,9 +46,9 @@ fun newCharacter(ownerID:String, context: Context){
 }
 
 //Retrieve characters from an owner
-fun retrieveCharacters(ownerID:String, context: Context): ArrayList<CharacterData>{
+fun retrieveCharacters(ownerID:String): ArrayList<CharacterData>{
     val apiURL = "$url/retrieveCharacters"
-    val ownerJSON = JSONObject("""{"ownerID":$ownerID}""")
+    val ownerJSON = JSONObject("""{"owner_ID":$ownerID}""")
     val json = "application/json; charset=utf-8".toMediaTypeOrNull()
     val body = (ownerJSON.toString()).toRequestBody(json)
     val request = Request.Builder()
@@ -72,16 +72,67 @@ fun retrieveCharacters(ownerID:String, context: Context): ArrayList<CharacterDat
     }
 }
 
-data class CharacterData(
-    val owner_ID: String? = null,
-    val characterContents: CharacterAttributes? = null,
-    val character_ID: String? = null
-):Serializable
+//TODO: singular retrieval or find out how to pass intents by reference
+
+//Ensure we can update then retrieve from database
+fun levelUp(character: CharacterData){
+    val leveledUpContents = character.characterContents?.copy(
+        level = (character.characterContents.level!!.toInt() + 1).toString()
+    )
+    val apiURL = "$url/levelUp"
+    val insertRow = CharacterRow(character.owner_ID,
+        characterAttributesAdapter.toJson(leveledUpContents),
+        character.character_ID)
+    val insertJSON = JSONObject(
+        """{"owner_ID":${insertRow.owner_ID},
+            |character_JSON:${insertRow.character_JSON},
+            |character_ID:${insertRow.character_ID}}"""
+            .trimMargin()
+    )
+    val JSON = "application/json; charset=utf-8".toMediaTypeOrNull()
+    val body = (insertJSON.toString()).toRequestBody(JSON)
+    val request = Request.Builder()
+        .url(apiURL)
+//        .url("http://10.0.2.2:3000/createCharacter")          //"abagail" local
+        .post(body)
+        .build()
+    client.newCall(request).execute().use{response ->
+        if(!response.isSuccessful) {throw IOException("Unexpected code $response")}
+    }
+}
+
+//update database
+//fun updateCharacter(){
+//
+//}
+
+//take in owner1, owner1[items], owner2, owner2[items]
+//fun tradeItems(aIems: List<Tradeable>, bItems:List<Tradeable>){
+//
+//}
+
+//open class Tradeable(var ownerID: String?):Serializable{
+//
+//}
+//class CharacterData(
+//    owner_ID: String? = null,
+//    val characterContents: CharacterAttributes? = null,
+//    val character_ID: String? = null
+//):Tradeable(owner_ID)
+
+//API formatted character
 data class CharacterRow(
     val owner_ID: String? = null,
     val character_JSON: String? = null,
     val character_ID: String? = null
 ): Serializable
+
+//Internal formatted character
+data class CharacterData(
+    val owner_ID: String? = null,
+    val characterContents: CharacterAttributes? = null,
+    val character_ID: String? = null
+):Serializable
 data class CharacterAttributes(
     val name:String?=null,
     val stats:CharacterStats?=null,

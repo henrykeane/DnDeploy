@@ -274,4 +274,14 @@
             android:text="cha"
             android:textColor="#273043" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/levelUpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="levelUpButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loreTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

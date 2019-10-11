@@ -2,6 +2,7 @@ package com.example.dndeploy
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 
 class ViewCharacterActivity : AppCompatActivity() {
@@ -56,7 +57,7 @@ class ViewCharacterActivity : AppCompatActivity() {
         val profTextView = findViewById<TextView>(R.id.profTextView)
         var prof = ""
         for(individualProf in thisCharacter.prof){
-            prof += individualProf + " "
+            prof += "$individualProf "
         }
         profTextView.text = prof
 
@@ -79,5 +80,10 @@ class ViewCharacterActivity : AppCompatActivity() {
         wisTextView.text = thisCharacter.stats?.wis
         val chaTextView = findViewById<TextView>(R.id.chaTextView)
         chaTextView.text = thisCharacter.stats?.cha
+
+        val levelUpButton = findViewById<Button>(R.id.levelUpButton)
+        levelUpButton.setOnClickListener{
+            levelUp(character)
+        }
     }
 }
