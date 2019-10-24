@@ -34,7 +34,13 @@ class CharacterPoolActivity : AppCompatActivity() {
             adapter = CharacterPoolAdapter(characters.toTypedArray(), context)
         }
 
-        //TODO: Implement swipe-to-refresh interface
+        val draftButton = findViewById<Button>(R.id.draftButton)
+        draftButton.setOnClickListener{
+            val draftIntent = Intent(this,DraftActivity::class.java)
+            startActivity(draftIntent)
+        }
+
+        //TODO: Implement swipe-to-refresh interface OR webhook api
 
         val generateCharacterButton = findViewById<Button>(R.id.generateCharacterButton)
         generateCharacterButton.setOnClickListener{

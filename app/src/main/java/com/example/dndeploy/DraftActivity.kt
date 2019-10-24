@@ -18,8 +18,8 @@ class DraftActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draft)
 
+        mSocket.on("draft pass", draftPass)
         mSocket.connect()
-        mSocket.on("chat message", chatMessage)
 
         val socketToConsoleButton = findViewById<Button>(R.id.socketToConsoleButton)
 
@@ -29,16 +29,13 @@ class DraftActivity : AppCompatActivity() {
             mSocket.emit(messageType,messageContents)
         }
     }
-//    fun chatMessage():Emitter.Listener{
-//
-//    }
-    private val chatMessage = object : Emitter.Listener {
+    private val draftPass = object : Emitter.Listener {
     override fun call(vararg args: Any) {
             (this@DraftActivity).runOnUiThread(Runnable {
-                val data = args[0] as JSONObject
+                val data = args[0] as String//as JSONObject
                 val msg: String
                 try {
-                    msg = data.getString("msg")
+                    msg = data//.getString("msg")
                 } catch (e: JSONException) {
                     print(e)
                     return@Runnable
