@@ -37,6 +37,7 @@ class CharacterPoolActivity : AppCompatActivity() {
         val draftButton = findViewById<Button>(R.id.draftButton)
         draftButton.setOnClickListener{
             val draftIntent = Intent(this,DraftActivity::class.java)
+            draftIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             startActivity(draftIntent)
         }
 
@@ -51,6 +52,7 @@ class CharacterPoolActivity : AppCompatActivity() {
                 refreshIntent.putExtra("com.example.dndeploy.ID", ownerID)
                 val dbResponse = retrieveCharacters(ownerID);
                 refreshIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
+                refreshIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                 finish()
                 startActivity(refreshIntent)
             }

@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
                     ownerIDIntent.putExtra("com.example.dndeploy.ID", ownerID)
                     val dbResponse = retrieveCharacters(ownerID);
                     ownerIDIntent.putExtra("com.example.dndeploy.RESPONSE", dbResponse)
+                    ownerIDIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
                     startActivity(ownerIDIntent)
                 }
             }

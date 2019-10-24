@@ -27,6 +27,7 @@ class CharacterPoolAdapter(private val characters: Array<CharacterData>?, privat
         characterSelector.setOnClickListener{
             val characterIntent = Intent(mCon, ViewCharacterActivity::class.java)
             characterIntent.putExtra("com.example.dndeploy.CHARACTER",character)
+            characterIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             mCon.startActivity(characterIntent)
         }
     }
