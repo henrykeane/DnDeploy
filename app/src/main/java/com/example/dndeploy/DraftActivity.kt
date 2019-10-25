@@ -1,32 +1,29 @@
 package com.example.dndeploy
 
-import android.app.PendingIntent.getActivity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import com.github.nkzawa.socketio.client.IO
 import com.github.nkzawa.emitter.Emitter
 import org.json.JSONException
-import org.json.JSONObject
-
 
 class DraftActivity : AppCompatActivity() {
-    var mSocket =  IO.socket("https://851e8f58.ngrok.io")
-
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_draft)
 
-        mSocket.on("draft pass", draftPass)
-        mSocket.connect()
+        val app = this.application as DraftApplication
+        val socket = app.getSocket()
+        socket?.on("draft pass", draftPass)
 
         val socketToConsoleButton = findViewById<Button>(R.id.socketToConsoleButton)
 
         socketToConsoleButton.setOnClickListener{
             val messageType = "chat message"
             val messageContents = "sample text"
-            mSocket.emit(messageType,messageContents)
+            socket?.emit(messageType,messageContents)
         }
     }
     private val draftPass = object : Emitter.Listener {

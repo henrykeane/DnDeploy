@@ -36,7 +36,8 @@ class CharacterPoolActivity : AppCompatActivity() {
 
         val draftButton = findViewById<Button>(R.id.draftButton)
         draftButton.setOnClickListener{
-            val draftIntent = Intent(this,DraftActivity::class.java)
+            val draftIntent = Intent(this,DraftLobbyActivity::class.java)
+            draftIntent.putExtra("com.example.dndeploy.ID", ownerID)
             draftIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
             startActivity(draftIntent)
         }
